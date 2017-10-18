@@ -7,9 +7,9 @@ public class Main {
         int number_of_inputs = 3;
         Perceptron perc = new Perceptron( number_of_inputs );
 
-        int n = 6; //ilość powtórzeń uczenia się
+        int n = 1; //ilość powtórzeń uczenia się
         int r = 4; //rozmiar tablic danych wejściowych
-        double learning_rate = 0.1; //krok uczenia się
+        double learning_rate = 0.3; //krok uczenia się
 
         int x0 = 1; //bias
 
@@ -26,6 +26,7 @@ public class Main {
             for ( int i = 0; i < r; i++ )
                 perc.learn( new int[] { x0, x1[i], x2[i] }, y[i], learning_rate );
 
+        //wyświetlenia wag po zakończeniu uczenia
         System.out.println( "WAGI:" );
         for ( int i = 0; i < number_of_inputs; i++ )
             System.out.println( "w" + i + " = " + perc.getW( i ) );
