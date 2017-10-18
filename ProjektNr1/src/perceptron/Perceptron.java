@@ -15,8 +15,7 @@ public class Perceptron {
 
     //funkcja aktywująca
     private int active ( double y_p ) {
-        if ( y_p < 0 ) return 0;
-        else return 1;
+        return y_p < 0 ? 0 : 1;
     }
 
     //sumator

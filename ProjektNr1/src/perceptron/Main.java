@@ -22,11 +22,9 @@ public class Main {
         //int[] y = { 0, 1, 1, 1 }; //OR
 
         //uczenie perceptronu
-        for ( int j = 0; j < n; j++ ) {
-            for ( int i = 0; i < r; i++ ) {
+        for ( int j = 0; j < n; j++ )
+            for ( int i = 0; i < r; i++ )
                 perc.learn( new int[] { x0, x1[i], x2[i] }, y[i], learning_rate );
-            }
-        }
 
         System.out.println( "WAGI:" );
         for ( int i = 0; i < number_of_inputs; i++ )
