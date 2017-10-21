@@ -36,8 +36,4 @@ public class Perceptron {
         for ( int i = 0; i < noi; i++ )
             w[i] += ( y - y_p ) * lr * x[i];
     }
-
-    public double getW ( int i ) {
-        return w[i];
-    }
 }
