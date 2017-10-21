@@ -1,5 +1,7 @@
 package perceptron;
 
+import java.util.Random;
+
 public class Perceptron {
 
     private int noi; //ilość wejść
@@ -10,7 +12,7 @@ public class Perceptron {
         w = new double[noi];
 
         for ( int i = 0; i < noi; i++ )
-            w[i] = 0.5;
+            w[i] = new Random().nextDouble(); //wagi początkowe sa losowane
     }
 
     //funkcja aktywująca
