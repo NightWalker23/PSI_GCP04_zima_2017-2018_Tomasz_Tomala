@@ -1,5 +1,7 @@
 package alphabet;
 
+import java.util.Arrays;
+
 public class Alphabet {
     static int[][][][] letters = {
             {//wielkie litery
@@ -63,6 +65,7 @@ public class Alphabet {
 
     public static int[] getLetter ( int size, int letter ) {
         int[] ret = new int[7];
+        Arrays.fill( ret, 1, 6, 0 );
         ret[0] = 1;
 
         //sektor 1

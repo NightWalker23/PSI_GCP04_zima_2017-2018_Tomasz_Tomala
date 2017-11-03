@@ -30,7 +30,6 @@ public class Main_adaline {
             proc = 0;
 
             for ( int i = 0; i < 2; i++ ) {     //-1 - wielkie litery, 1 - małe litery
-
                 for ( int j = 0; j < nol; j++ )
                     learn( ada, noi, lr, i, j );
             }
@@ -65,19 +64,20 @@ public class Main_adaline {
     private static void learn ( Adaline[] ada, int noi, double lr, int i, int j ) {
         int[] vector;                   //tablica przechowująca wektor sygnałów wejściowych do uczenia pierwszej warstwy sieci
         vector = Alphabet.getLetter( i, j );
+        format( vector );
 
         int[] vector_p = new int[noi];  //tablica przechowująca wektor sygnałów wyjściowych pierwszej warstwy sieci
         vector_p[0] = 1; //bias
 
-        int u;
-        if ( i == 0 ) u = - 1;
-            else u = 1;
+        int letter_size;
+        if ( i == 0 ) letter_size = - 1;
+            else letter_size = 1;
 
-        for ( int k = 0; k < noi - 1; k++ ) {           //uczenie pierwszej warstwy
-            ada[k].learn( vector, u, lr );
-            vector_p[k + 1] = ada[k].test( vector );    //pobranie sygnału wyjściowego
+        for ( int k = 0; k < noi - 1; k++ ) {               //uczenie pierwszej warstwy
+            ada[k].learn( vector, letter_size, lr );
+            vector_p[k + 1] = ada[k].test( vector );        //pobranie sygnału wyjściowego
         }
-        ada[noi - 1].learn( vector_p, u, lr );          //uczenie perceptronu wynikowego na podstawie sygnałów wyjściowych pierwszej warstwy
+        ada[noi - 1].learn( vector_p, letter_size, lr );    //uczenie perceptronu wynikowego na podstawie sygnałów wyjściowych pierwszej warstwy
     }
 
     private static int[] test ( Adaline[] ada, int nol, int noi ) {
@@ -89,6 +89,8 @@ public class Main_adaline {
         for ( int i = 0; i < 2; i++ ) { //testowanie, celem upewnienia się, czy sieć już nauczona
             for ( int j = 0; j < nol; j++ ) {
                 vector = Alphabet.getLetter( i, j );
+                format( vector );
+
                 for ( int k = 0; k < noi - 1; k++ )
                     vector_p[k + 1] = ada[k].test( vector );
 
@@ -96,5 +98,11 @@ public class Main_adaline {
             }
         }
         return wyj;
+    }
+
+    //w przypadku adaline sygnały wejściowe = 0 muszą być zamienione na sygnały -1
+    private static void format( int[] vector ){
+        for ( int k = 0; k < vector.length; k++ )
+            if ( vector[k] == 0 ) vector[k] = -1;
     }
 }
