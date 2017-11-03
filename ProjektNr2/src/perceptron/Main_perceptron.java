@@ -80,13 +80,13 @@ public class Main_perceptron {
         int[] vector_p = new int[noi];  //tablica przechowująca wektor sygnałów wyjściowych pierwszej warstwy sieci
         vector_p[0] = 1;                //bias
 
-        for ( int letter_size = 0; letter_size < 2; letter_size++ ) { //testowanie, celem upewnienia się, czy sieć już nauczona
-            for ( int letter_number = 0; letter_number < nol; letter_number++ ) {
-                vector = Alphabet.getLetter( letter_size, letter_number );
+        for ( int i = 0; i < 2; i++ ) { //testowanie, celem upewnienia się, czy sieć już nauczona
+            for ( int j = 0; j < nol; j++ ) {
+                vector = Alphabet.getLetter( i, j );
                 for ( int k = 0; k < noi - 1; k++ )
                     vector_p[k + 1] = perc[k].process( vector );
 
-                wyj[letter_size * nol + letter_number] = perc[noi - 1].process( vector_p );
+                wyj[i * nol + j] = perc[noi - 1].process( vector_p );
             }
         }
         return wyj;
