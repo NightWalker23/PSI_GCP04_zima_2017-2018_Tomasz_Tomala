@@ -63,6 +63,7 @@ public class Alphabet {
             }
     };
 
+    //zwraca wektor sygnałów wejściowych zależny od danej litery
     public static int[] getLetter ( int size, int letter ) {
         int[] ret = new int[7];
         Arrays.fill( ret, 1, 6, 0 );

@@ -1,7 +1,6 @@
 package perceptron;
 
 import alphabet.Alphabet;
-
 import java.util.Arrays;
 
 public class Main_perceptron {
@@ -9,9 +8,9 @@ public class Main_perceptron {
     public static void main ( String[] args ) {
 
         int noi = 7;        //ilość wejść
-        int nol = 26;       //ilość liter MAX 26
+        int nol = 13;       //ilość liter MAX 26
         int counter = 0;    //licznik ilości epok uczenia się
-        double lr = 0.01;   //krok uczenia się
+        double lr = 0.1;    //krok uczenia się
 
         Perceptron[] perc = new Perceptron[noi];
         for ( int i = 0; i < noi; i++ )
@@ -24,39 +23,17 @@ public class Main_perceptron {
         int[] wyj = new int[nol * 2];   //tablica przechowująca wyniki testowania perceptronu
         Arrays.fill( wyj, 0, nol * 2, 0 );
 
-        int proc; //zmienna pomocnicza do sprawozdania
-
         while ( ! Arrays.equals( y, wyj ) ) {
-            proc = 0;
 
             for ( int i = 0; i < 2; i++ )       //0 - wielkie litery, 1 - małe litery
                 for ( int j = 0; j < nol; j++ )
                     learn( perc, noi, lr, i, j );
 
             wyj = test( perc, nol, noi );
-
-            for ( int i = 0; i < nol * 2; i++ ) //testowanie, do sprawozdania
-                if ( wyj[i] != y[i] )
-                    proc++;
-
             counter++;
-            System.out.format( "%.6f%n", ( double ) proc / ( nol * 2 ) );
-        }
-        System.out.println();
-
-
-        //TESTOWANIE
-        for ( int i = 0; i < nol; i++ )     //wyświetlenie liter
-            System.out.print( ( char ) ( i + 65 ) + "\t" );
-        System.out.println();
-
-        for ( int i = 0; i < 2; i++ ) {     //wyświetlenie wynków
-            for ( int j = 0; j < nol; j++ )
-                System.out.print( wyj[i * nol + j] + "\t" );
-            System.out.println();
         }
 
-        System.out.println( "\nIlość kroków do nauczenia się = " + counter );
+        System.out.println( "Ilość kroków do nauczenia się = " + counter );
     }
 
 

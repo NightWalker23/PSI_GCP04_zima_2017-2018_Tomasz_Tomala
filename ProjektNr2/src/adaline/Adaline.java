@@ -34,7 +34,7 @@ public class Adaline {
         double y_p = process( x );
 
         for ( int i = 0; i < noi; i++ )
-            w[i] += ( y - y_p ) * lr * x[i];
+            w[i] += ( y - y_p ) * lr * x[i]; //modyfikacja wag
     }
 
     //testowanie
