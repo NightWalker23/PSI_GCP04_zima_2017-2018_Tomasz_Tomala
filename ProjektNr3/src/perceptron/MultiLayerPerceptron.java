@@ -35,28 +35,34 @@ public class MultiLayerPerceptron {
 		delta = new double[numberOfLayers][];
 
 		for ( int i = 0; i < numberOfLayers; i++ )
-			for ( int j = 0; j < layersSize[i]; j++ )
+			for ( int j = 0; j < layersSize[i]; j++ ) {
 				delta[i] = new double[layersSize[i]];
-
-		for ( int i = 0; i < numberOfLayers; i++ )
-			Arrays.fill( delta[i], 0 );
+				Arrays.fill( delta[i], 0 );
+			}
 	}
 
-	public void Learn ( double[] x, double y ) {
-		double[][] vectors = new double[numberOfLayers + 1][];    //służy do przekazywania dane z jednej warstwy do następnej
+	public void BackPropagationLearn ( double[] x, double y ) {
+		double[][] vectors = new double[numberOfLayers + 1][];	//służy do przekazywania dane z jednej warstwy do następnej
 
-		vectors[0] = new double[numberOfInputs];                //pierwszy wymiar to dane wejściowe do nauki
+		vectors[0] = new double[numberOfInputs];				//pierwszy wymiar to dane wejściowe do nauki
 
-		//kolejne dane to dane z perceptronów z poprzedniej warstwy
-		for ( int i = 1; i < numberOfLayers + 1; i++ )
+		for ( int i = 1; i < numberOfLayers + 1; i++ )			//kolejne dane to dane z perceptronów z poprzedniej warstwy
 			vectors[i] = new double[layersSize[i - 1] + 1];
 
-		//wypełnienie biasami
-		for ( int i = 0; i < numberOfLayers + 1; i++ )
+		for ( int i = 0; i < numberOfLayers + 1; i++ )			//wypełnienie biasami
 			vectors[i][0] = 1;
 
-		System.arraycopy( x, 0, vectors[0], 1, numberOfInputs - 1 ); //przerzucenie wartosci z tablicy x do pierwszej warstwy vectora
+																//przerzucenie wartosci z tablicy x do pierwszej warstwy vectora
+		System.arraycopy( x, 0, vectors[0], 1, numberOfInputs - 1 );
 
+		firstPhase( vectors );
+		secondPhase( vectors, y );
+		thirdPhase( vectors, y );
+
+	}
+
+	//UCZENIE I FAZA - PRZEPUSZCZENIE INPUTU W CELU OKREŚLENIA SYGNAŁU WYJŚCIOWEGO
+	private void firstPhase ( double[][] vectors ) {
 		System.out.println( "UCZENIE I FAZA - PRZEPUSZCZENIE INPUTU W CELU OKREŚLENIA SYGNAŁU WYJŚCIOWEGO\n" );
 		System.out.println( Arrays.toString( vectors[0] ) );
 
@@ -67,25 +73,28 @@ public class MultiLayerPerceptron {
 				vectors[i + 1][j + 1] = perceptronNetwork[i][j].test( vectors[i] );
 			System.out.println( Arrays.toString( vectors[i + 1] ) );
 		}
+	}
 
-
+	//UCZENIE II FAZA - LICZENIE DELT
+	private void secondPhase ( double[][] vectors, double y ) {
 		System.out.println( "\n\n\nUCZENIE II FAZA - LICZENIE DELT\n" );
 
 		//zaczynamy od tyłu
-		//najpierw określamy wartość błędu jako wartość oczekiwana - wartość otrzymana
+		//najpierw określamy wartość błędu jako (wartość oczekiwana) - (wartość otrzymana)
 		for ( int i = 0; i < layersSize[numberOfLayers - 1]; i++ )
 			delta[numberOfLayers - 1][i] = y - vectors[numberOfLayers][i + 1];
 
-		for ( int i = numberOfLayers - 2; i >=0; i-- )
+		for ( int i = numberOfLayers - 2; i >= 0; i-- )
 			for ( int j = 0; j < layersSize[i]; j++ )
-				for ( int k = 0; k < layersSize[i+1]; k++ )
-					delta[i][j] += delta[i+1][k] * perceptronNetwork[i+1][k].getW( j+1 );
+				for ( int k = 0; k < layersSize[i + 1]; k++ )
+					delta[i][j] += delta[i + 1][k] * perceptronNetwork[i + 1][k].getW( j + 1 );
 
 		for ( int i = 0; i < numberOfLayers; i++ )
 			System.out.println( Arrays.toString( delta[i] ) );
+	}
 
-
-
+	//UCZENIE III FAZA - MODYFIKACJA WAG
+	private void thirdPhase ( double[][] vectors, double y ) {
 		System.out.println( "\n\n\nUCZENIE III FAZA - MODYFIKACJA WAG\n" );
 		System.out.println( Arrays.toString( vectors[0] ) );
 
@@ -96,6 +105,5 @@ public class MultiLayerPerceptron {
 				vectors[i + 1][j + 1] = perceptronNetwork[i][j].backlearn( vectors[i], y, learningRate );
 			System.out.println( Arrays.toString( vectors[i + 1] ) );
 		}
-
 	}
 }
