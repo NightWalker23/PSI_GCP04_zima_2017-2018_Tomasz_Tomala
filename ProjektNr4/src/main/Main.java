@@ -2,11 +2,11 @@ package main;
 
 public class Main {
 
-	static int numberOfInputs = 64 + 1;					//ilość wejść
+	static int numberOfInputs = 64 + 1;					//ilość wejść (+1 bo bias)
 	static double learningRate = 0.01;					//współczynnik uczenia się
-	static double forgettingRate = learningRate / 3.0;	//współczynnik zapominania
+	static double forgettingRate = learningRate / 6.0;	//współczynnik zapominania
 	static int numberOfEmoji = 4;						//liczba emotikonów
-	static int numberOfNeurons = 5;						//liczba nauronów
+	static int numberOfNeurons = 5;						//liczba neuronów
 
 	public static void main ( String[] args ) {
 
@@ -15,30 +15,23 @@ public class Main {
 		for ( int i = 0; i < numberOfNeurons; i++ )
 			hebbs[i] = new Hebb( numberOfInputs );
 
-		System.out.println( "PRZED UCZENIEM" );
-		for ( int i = 0; i < numberOfEmoji; i++ ) {
-			winner = testHebb( hebbs, Emoji.emoji[i] );
-			System.out.println( "Winner Hebb = " + winner );
-		}
-
 		int ages = learn( hebbs );
 
-		System.out.println( "\n\nPO UCZENIU" );
+		System.out.println( "PO UCZENIU" );
 		for ( int i = 0; i < numberOfEmoji; i++ ) {
 			winner = testHebb( hebbs, Emoji.emoji[i] );
-			System.out.println( "Winner Hebb = " + winner );
+			System.out.println( "Emoji " + Emoji.emojiType[i] + " - winner neuron = " + winner );
 		}
 
-		System.out.println( "\n\nIlość epok = " + ages );
-
-		System.out.println( "\n\nTESTOWANIE" );
+		System.out.println( "\nTESTOWANIE" );
 		for ( int i = 0; i < numberOfEmoji; i++ ) {
 			winner = testHebb( hebbs, Emoji.emojiNoised[i] );
-			System.out.println( "Winner Hebb = " + winner );
+			System.out.println( "Emoji " + Emoji.emojiType[i] + " - winner neuron = " + winner );
 		}
 
-	}
+		System.out.println( "\nIlość epok = " + ages );
 
+	}
 
 	//uczenie neuronów
 	public static int learn ( Hebb[] hebbs ) {
@@ -55,7 +48,7 @@ public class Main {
 
 				//uczenie neuronów każdej emotikony
 				for ( int k = 0; k < numberOfEmoji; k++ )
-					hebbs[j].learnUnsupervised( Emoji.emoji[k], learningRate, forgettingRate, Hebb.HEBB_WITHOUT_FORGETTIN );
+					hebbs[j].learnUnsupervised( Emoji.emoji[k], learningRate, forgettingRate, Hebb.HEBB_WITH_FORGETTING );
 
 				//tesotowanie sieci celem sprawdzenia, czy sieć jest już nauczona
 				for ( int l = 0; l < numberOfEmoji; l++ )

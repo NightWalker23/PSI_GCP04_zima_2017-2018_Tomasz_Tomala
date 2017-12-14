@@ -4,10 +4,10 @@ import java.util.Random;
 
 public class Hebb {
 
-	private int noi;    //ilość wejść
-	private double[] w; //wagi
-	public static boolean HEBB_WITH_FORGETTIN = true;
-	public static boolean HEBB_WITHOUT_FORGETTIN = false;
+	private int noi;    									//ilość wejść
+	private double[] w; 									//wagi
+	public static boolean HEBB_WITH_FORGETTING = true;		//flaga do uczenia ze współczynnikiem zapominania
+	public static boolean HEBB_WITHOUT_FORGETTING = false;	//flaga do uczenia bez współczynnika zapominania
 
 	public Hebb ( int numbers_of_inputs ) {
 		noi = numbers_of_inputs;
@@ -21,7 +21,6 @@ public class Hebb {
 
 	//funkcja aktywacji
 	private double active ( double y_p ) {
-		//return y_p; //funkcja liniowa
 		return ( 1.0 / ( 1 + Math.pow( Math.E, - y_p ) ) );		//unipolarna sigmoidalna
 	}
 
