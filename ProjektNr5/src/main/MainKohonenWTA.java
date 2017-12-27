@@ -1,18 +1,3 @@
-/**
- * TODO:
- * - Trzeba tak dostosować DataSet żeby te kwiatki się mocno od siebie rózniły.
- * Wszak nikt nie zabronił zrobić własnego DataSetu XD
- * <p>
- * - Spróbować z innymi współczynnikami uczenia się
- * <p>
- * - MOŻE POSKUTKOWAĆ: narysować sobie takie 3 irysy wzorując się na tych z wiki
- * tylko, że narysować je serio rózne
- * i to na ich podstawie zrobić sobie data set
- * <p>
- * starać się tak robić te dane, że jak wektor neuronu będzie się przybliżać do wektora kwiatu
- * to żeby jednocześnie się oddalał od wektora innych kwiatów
- */
-
 package main;
 
 
