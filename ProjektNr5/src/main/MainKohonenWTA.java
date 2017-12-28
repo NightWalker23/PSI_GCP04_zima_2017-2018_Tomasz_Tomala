@@ -1,54 +1,63 @@
 package main;
 
-
 public class MainKohonenWTA {
 
-	private static double learningRate = 0.0001;		//współczynnik uczenia się
-	private static int numberOfInputs = 4;				//ilość wejść
-	private static int numberOfNeurons = 200;			//liczba neuronów
-	private static int numberOfFlowers = 3;				//liczba kwiatów
-	private static int numberOfLearnSamples = 15;		//liczba danych uczących dla każdego kwiatu
-	private static int numberOfTestSamples = 6;			//liczba danych testujacych dla każdego kwiatu
+	private static double learningRate = 0.1;		//współczynnik uczenia się
+	private static int numberOfInputs = 4;			//ilość wejść
+	private static int numberOfNeurons = 200;		//liczba neuronów
+	private static int numberOfFlowers = 3;			//liczba kwiatów
+	private static int numberOfLearnSamples = 15;	//liczba danych uczących dla każdego kwiatu
+	private static int numberOfTestSamples = 5;		//liczba danych testujacych dla każdego kwiatu
+	private static int learnLimit = 10000;			//maksymalny próg epok uczenia
 
 	public static void main ( String[] args ) {
 
-		KohonenWTA[] kohonens = new KohonenWTA[numberOfNeurons];
-		for ( int i = 0; i < numberOfNeurons; i++ )
-			kohonens[i] = new KohonenWTA( numberOfInputs );
+		int successCounter = 0;		//licznik prób uczenia zakończonych powodzeniem
+		int unsuccesCounter = 0;	//licznik prób uczenia zakończonych niepowodzeniem
 
-		int ages = learn( kohonens );
-		int winner;
+		while ( successCounter != 10 && unsuccesCounter != 100 ) {
 
-		System.out.println( "PO UCZENIU" );
-		for ( int i = 0; i < numberOfFlowers; i++ ) {
-			for ( int j = 0; j < numberOfLearnSamples; j++ ) {
-				winner = getWinner( kohonens, Flower.flowerLearn[i][j] );
-				System.out.println( "Flower[" + i + "][" + j + "] winner = " + winner );
+			KohonenWTA[] kohonens = new KohonenWTA[numberOfNeurons];
+			for ( int i = 0; i < numberOfNeurons; i++ )
+				kohonens[i] = new KohonenWTA( numberOfInputs );
+
+			int ages = learn( kohonens );
+
+			if ( ages != learnLimit ) {
+				successCounter++;
+
+				int winner;
+
+				System.out.println( "PO UCZENIU" );
+				for ( int i = 0; i < numberOfFlowers; i++ ) {
+					winner = getWinner( kohonens, Flower.flowerLearn[i][0] );
+					System.out.println( "Flower[" + i + "] winner = " + winner );
+				}
+				System.out.println();
+
+				System.out.println( "PO TESTOWANIU" );
+				for ( int i = 0; i < numberOfFlowers; i++ ) {
+					for ( int j = 0; j < numberOfTestSamples; j++ ) {
+						winner = getWinner( kohonens, Flower.flowerTest[i][j] );
+						System.out.println( "Flower[" + i + "][" + j + "] test winner = " + winner );
+					}
+					System.out.println();
+				}
+				System.out.println();
+
+
+				System.out.println( "Ilość epok = " + ages + "\n\n\n" );
 			}
-			System.out.println();
+			else unsuccesCounter++;
 		}
-		System.out.println();
-
-
-		System.out.println( "PO TESTOWANIU" );
-		for ( int i = 0; i < numberOfFlowers; i++ ) {
-			for ( int j = 0; j < numberOfTestSamples; j++ ) {
-				winner = getWinner( kohonens, Flower.flowerTest[i][j] );
-				System.out.println( "Flower[" + i + "][" + j + "] test winner = " + winner );
-			}
-			System.out.println();
-		}
-		System.out.println();
-
-
-		System.out.println( "Ilość epok = " + ages );
+		System.out.println( "\nIlość niepowodzeń = " + unsuccesCounter );
 	}
 
 
+	//uczenie sieci
 	private static int learn ( KohonenWTA[] kohonens ) {
 
 		int counter = 0;
-		int limit = 10000;
 		int winner;
 
 		int[][] winners = new int[numberOfFlowers][numberOfLearnSamples];
@@ -56,8 +65,9 @@ public class MainKohonenWTA {
 			for ( int j = 0; j < numberOfLearnSamples; j++ )
 				winners[i][j] = - 1;
 
-		while ( ! isUnique( winners ) ) {
+		while ( ! isUnique( winners ) ) {	//dopóki sieć się nauczy
 
+			//uczymy sieć po kolei każdy kwiat z każdego gatunku
 			for ( int i = 0; i < numberOfFlowers; i++ ) {
 				for ( int j = 0; j < numberOfLearnSamples; j++ ) {
 					winner = getWinner( kohonens, Flower.flowerLearn[i][j] );
@@ -65,17 +75,21 @@ public class MainKohonenWTA {
 				}
 			}
 
+			//po zakończeniu epoki pobieramy zwycięzców
 			for ( int i = 0; i < numberOfFlowers; i++ )
 				for ( int j = 0; j < numberOfLearnSamples; j++ )
 					winners[i][j] = getWinner( kohonens, Flower.flowerLearn[i][j] );
 
-			if ( ++ counter == limit )
+			//jeśli ilość prób nauczenia osiągnie limit to uczenie uznajemy za nieudane i kończymy
+			if ( ++ counter == learnLimit )
 				break;
 		}
 
 		return counter;
 	}
 
+
+	//sprawdza czy sieć jest już nauczona
 	private static boolean isUnique ( int[][] winners ) {
 
 		//czy kwiaty danego gatunku mają tylko jednego zwycięzcę
@@ -94,11 +108,15 @@ public class MainKohonenWTA {
 		return true;
 	}
 
+
+	//zwraca zwycięzcę dla danego kwiatu
 	private static int getWinner ( KohonenWTA[] kohonens, double[] vector ) {
 
 		int winner = 0;
 		double minDistance = distanceBetweenVectors( kohonens[0].getW(), vector );
 
+		//sprawdza który neuron jest zwycięzcą
+		//miarą zwycięztwa jest odległość między wektorem wag neuronu a wektorem cech kwiatu
 		for ( int i = 0; i < numberOfNeurons; i++ ) {
 			if ( distanceBetweenVectors( kohonens[i].getW(), vector ) < minDistance ) {
 				winner = i;
@@ -109,6 +127,8 @@ public class MainKohonenWTA {
 		return winner;
 	}
 
+
+	//zwraca odległość między zadanycmi wektorami
 	public static double distanceBetweenVectors ( double[] vector1, double[] vector2 ) {
 
 		double suma = 0.0;
@@ -119,15 +139,6 @@ public class MainKohonenWTA {
 		}
 
 		return Math.sqrt( suma );
-	}
-
-	public static void showDistance ( KohonenWTA[] kohonenWTAS, double[] vector, int x, int y ) {
-
-		double distance;
-		for ( int i = 0; i < numberOfNeurons; i++ ) {
-			distance = distanceBetweenVectors( kohonenWTAS[i].getW(), vector );
-			System.out.println( "Neuron[" + i + "] distance to flower <" + x + ", " + y + "> = " + distance );
-		}
 	}
 
 }

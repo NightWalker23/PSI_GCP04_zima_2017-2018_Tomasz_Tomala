@@ -12,34 +12,17 @@ public class KohonenWTA {
 		w = new double[noi];
 
 		for ( int i = 0; i < noi; i++ )
-			w[i] = new Random().nextDouble();	//wagi początkowe sa losowane
-
-		//normalizeWeights();
+			w[i] = new Random().nextDouble();	//wagi początkowe sa losowane w zakresie od 0 do 1
 	}
 
-	//uczenie
+	//uczenie poprzez zmniejszenie odległości między wektorem wag a zadanym wektorem
 	public void learn ( double[] x, double lr ) {
 
 		for ( int i = 0; i < noi; i++ )
 			w[i] += lr * ( x[i] - w[i] );
-
-		//normalizeWeights();
 	}
 
-	//normalizuje wagi
-	private void normalizeWeights () {
-
-		double dl = 0.0;
-		for ( int i = 0; i < w.length; i++ )
-			dl += Math.pow( w[i], 2 );
-
-		dl = Math.sqrt( dl );
-
-		for ( int i = 0; i < w.length; i++ )
-			if ( w[i] > 0 && dl != 0 )
-				w[i] = w[i] / dl;
-	}
-
+	//zwraca wektor wag
 	public double[] getW () {
 		return w;
 	}
