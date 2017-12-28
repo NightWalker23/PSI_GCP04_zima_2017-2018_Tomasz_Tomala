@@ -128,7 +128,7 @@ public class MainKohonenWTA {
 	}
 
 
-	//zwraca odległość między zadanycmi wektorami
+	//zwraca odległość między zadanymi wektorami
 	public static double distanceBetweenVectors ( double[] vector1, double[] vector2 ) {
 
 		double suma = 0.0;

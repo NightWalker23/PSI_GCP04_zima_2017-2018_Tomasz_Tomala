@@ -1,0 +1,293 @@
+LEARNING RATE = 0.001
+LEARN SAMPLE = 15
+TEST SAMPLE = 5
+NEURONS = 200
+
+
+PO UCZENIU
+Flower[0] winner = 81
+Flower[1] winner = 13
+Flower[2] winner = 51
+
+PO TESTOWANIU
+Flower[0][0] test winner = 81
+Flower[0][1] test winner = 81
+Flower[0][2] test winner = 186
+Flower[0][3] test winner = 81
+Flower[0][4] test winner = 81
+
+Flower[1][0] test winner = 13
+Flower[1][1] test winner = 13
+Flower[1][2] test winner = 13
+Flower[1][3] test winner = 13
+Flower[1][4] test winner = 13
+
+Flower[2][0] test winner = 51
+Flower[2][1] test winner = 51
+Flower[2][2] test winner = 51
+Flower[2][3] test winner = 51
+Flower[2][4] test winner = 51
+
+
+Ilość epok = 6
+
+
+
+PO UCZENIU
+Flower[0] winner = 85
+Flower[1] winner = 114
+Flower[2] winner = 121
+
+PO TESTOWANIU
+Flower[0][0] test winner = 85
+Flower[0][1] test winner = 85
+Flower[0][2] test winner = 85
+Flower[0][3] test winner = 85
+Flower[0][4] test winner = 85
+
+Flower[1][0] test winner = 114
+Flower[1][1] test winner = 114
+Flower[1][2] test winner = 114
+Flower[1][3] test winner = 114
+Flower[1][4] test winner = 114
+
+Flower[2][0] test winner = 121
+Flower[2][1] test winner = 121
+Flower[2][2] test winner = 121
+Flower[2][3] test winner = 121
+Flower[2][4] test winner = 121
+
+
+Ilość epok = 17
+
+
+
+PO UCZENIU
+Flower[0] winner = 91
+Flower[1] winner = 1
+Flower[2] winner = 151
+
+PO TESTOWANIU
+Flower[0][0] test winner = 91
+Flower[0][1] test winner = 91
+Flower[0][2] test winner = 91
+Flower[0][3] test winner = 91
+Flower[0][4] test winner = 91
+
+Flower[1][0] test winner = 1
+Flower[1][1] test winner = 1
+Flower[1][2] test winner = 1
+Flower[1][3] test winner = 1
+Flower[1][4] test winner = 1
+
+Flower[2][0] test winner = 151
+Flower[2][1] test winner = 151
+Flower[2][2] test winner = 151
+Flower[2][3] test winner = 151
+Flower[2][4] test winner = 151
+
+
+Ilość epok = 32
+
+
+
+PO UCZENIU
+Flower[0] winner = 168
+Flower[1] winner = 185
+Flower[2] winner = 88
+
+PO TESTOWANIU
+Flower[0][0] test winner = 168
+Flower[0][1] test winner = 168
+Flower[0][2] test winner = 168
+Flower[0][3] test winner = 168
+Flower[0][4] test winner = 168
+
+Flower[1][0] test winner = 185
+Flower[1][1] test winner = 185
+Flower[1][2] test winner = 185
+Flower[1][3] test winner = 185
+Flower[1][4] test winner = 185
+
+Flower[2][0] test winner = 88
+Flower[2][1] test winner = 88
+Flower[2][2] test winner = 88
+Flower[2][3] test winner = 88
+Flower[2][4] test winner = 88
+
+
+Ilość epok = 23
+
+
+
+PO UCZENIU
+Flower[0] winner = 134
+Flower[1] winner = 112
+Flower[2] winner = 60
+
+PO TESTOWANIU
+Flower[0][0] test winner = 134
+Flower[0][1] test winner = 134
+Flower[0][2] test winner = 134
+Flower[0][3] test winner = 134
+Flower[0][4] test winner = 134
+
+Flower[1][0] test winner = 112
+Flower[1][1] test winner = 112
+Flower[1][2] test winner = 112
+Flower[1][3] test winner = 112
+Flower[1][4] test winner = 112
+
+Flower[2][0] test winner = 60
+Flower[2][1] test winner = 60
+Flower[2][2] test winner = 60
+Flower[2][3] test winner = 60
+Flower[2][4] test winner = 60
+
+
+Ilość epok = 22
+
+
+
+PO UCZENIU
+Flower[0] winner = 184
+Flower[1] winner = 110
+Flower[2] winner = 34
+
+PO TESTOWANIU
+Flower[0][0] test winner = 184
+Flower[0][1] test winner = 184
+Flower[0][2] test winner = 184
+Flower[0][3] test winner = 184
+Flower[0][4] test winner = 184
+
+Flower[1][0] test winner = 110
+Flower[1][1] test winner = 110
+Flower[1][2] test winner = 110
+Flower[1][3] test winner = 110
+Flower[1][4] test winner = 110
+
+Flower[2][0] test winner = 34
+Flower[2][1] test winner = 34
+Flower[2][2] test winner = 34
+Flower[2][3] test winner = 34
+Flower[2][4] test winner = 34
+
+
+Ilość epok = 10
+
+
+
+PO UCZENIU
+Flower[0] winner = 190
+Flower[1] winner = 62
+Flower[2] winner = 75
+
+PO TESTOWANIU
+Flower[0][0] test winner = 190
+Flower[0][1] test winner = 190
+Flower[0][2] test winner = 190
+Flower[0][3] test winner = 190
+Flower[0][4] test winner = 190
+
+Flower[1][0] test winner = 62
+Flower[1][1] test winner = 62
+Flower[1][2] test winner = 62
+Flower[1][3] test winner = 62
+Flower[1][4] test winner = 62
+
+Flower[2][0] test winner = 75
+Flower[2][1] test winner = 75
+Flower[2][2] test winner = 75
+Flower[2][3] test winner = 75
+Flower[2][4] test winner = 75
+
+
+Ilość epok = 19
+
+
+
+PO UCZENIU
+Flower[0] winner = 115
+Flower[1] winner = 62
+Flower[2] winner = 89
+
+PO TESTOWANIU
+Flower[0][0] test winner = 115
+Flower[0][1] test winner = 115
+Flower[0][2] test winner = 115
+Flower[0][3] test winner = 115
+Flower[0][4] test winner = 115
+
+Flower[1][0] test winner = 62
+Flower[1][1] test winner = 62
+Flower[1][2] test winner = 62
+Flower[1][3] test winner = 62
+Flower[1][4] test winner = 62
+
+Flower[2][0] test winner = 89
+Flower[2][1] test winner = 89
+Flower[2][2] test winner = 89
+Flower[2][3] test winner = 89
+Flower[2][4] test winner = 89
+
+
+Ilość epok = 26
+
+
+
+PO UCZENIU
+Flower[0] winner = 27
+Flower[1] winner = 126
+Flower[2] winner = 0
+
+PO TESTOWANIU
+Flower[0][0] test winner = 27
+Flower[0][1] test winner = 27
+Flower[0][2] test winner = 27
+Flower[0][3] test winner = 27
+Flower[0][4] test winner = 27
+
+Flower[1][0] test winner = 126
+Flower[1][1] test winner = 126
+Flower[1][2] test winner = 126
+Flower[1][3] test winner = 126
+Flower[1][4] test winner = 126
+
+Flower[2][0] test winner = 0
+Flower[2][1] test winner = 0
+Flower[2][2] test winner = 0
+Flower[2][3] test winner = 0
+Flower[2][4] test winner = 0
+
+
+Ilość epok = 18
+
+
+
+PO UCZENIU
+Flower[0] winner = 40
+Flower[1] winner = 179
+Flower[2] winner = 102
+
+PO TESTOWANIU
+Flower[0][0] test winner = 40
+Flower[0][1] test winner = 40
+Flower[0][2] test winner = 40
+Flower[0][3] test winner = 40
+Flower[0][4] test winner = 40
+
+Flower[1][0] test winner = 179
+Flower[1][1] test winner = 179
+Flower[1][2] test winner = 179
+Flower[1][3] test winner = 179
+Flower[1][4] test winner = 179
+
+Flower[2][0] test winner = 102
+Flower[2][1] test winner = 102
+Flower[2][2] test winner = 102
+Flower[2][3] test winner = 102
+Flower[2][4] test winner = 102
+
+
+Ilość epok = 6
