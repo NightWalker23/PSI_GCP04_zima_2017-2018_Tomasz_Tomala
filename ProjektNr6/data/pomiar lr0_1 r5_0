@@ -1,0 +1,32 @@
+współczynnik uczenia: 0,1
+radius: 5,0
+
+Ilość epok = 1
+Poprawność testowania = 25%
+
+Ilość epok = 1
+Poprawność testowania = 50%
+
+Ilość epok = 1
+Poprawność testowania = 25%
+
+Ilość epok = 1
+Poprawność testowania = 35%
+
+Ilość epok = 1
+Poprawność testowania = 35%
+
+Ilość epok = 15
+Poprawność testowania = 35%
+
+Ilość epok = 16
+Poprawność testowania = 35%
+
+Ilość epok = 16
+Poprawność testowania = 0%
+
+Ilość epok = 15
+Poprawność testowania = 35%
+
+Ilość epok = 1
+Poprawność testowania = 30%
